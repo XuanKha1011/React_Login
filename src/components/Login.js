@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import ContainerImage from './../assets/Image/image_container.png'
 import "./Login.css"
 import { useNavigate } from "react-router-dom";
+import users from './data/users';
 
   function Login(props) {
     let navigate = useNavigate();
@@ -10,40 +11,36 @@ import { useNavigate } from "react-router-dom";
     const [password, setPassword] = useState("")
     
     const [error, setError] = useState({
-      userEmail: "",
-      password: ""
+      errorAnnouncement: ""
     });
     
   // const userHard ='phuong@gmail.com';
   // const passHard = '123456';
 
     useEffect(() => {
-    const getEmail = localStorage.getItem('emailData')
-    const getPassword = localStorage.getItem('passwordData')
-    
-    if ( getEmail && getPassword) {
+    // const getEmail = localStorage.getItem('emailData')
+    // const getPassword = localStorage.getItem('passwordData')
+    const getToken = localStorage.getItem('tokenId')
+
+    if ( /*getEmail && getPassword*/ getToken) {
       navigate("/home");
     }
   });
 
   
     const handleSubmit = () => {
-      if(userEmail === 'phuong@gmail.com' && password === '123456'){
-        localStorage.setItem('emailData','phuong@gmail.com')
-        localStorage.setItem('passwordData','123456')
-        navigate("/home");
-        // setError({
-        //   userEmail: "Email is not valid",
-        //   password: "Password is not valid",
-        // }) 
-      } 
-        else {
-            setError({
-              userEmail: "Email is not valid",
-              password: "Password is not valid",
-            })
-            navigate("/login");
+      for (let i of users) {
+         if (i.email === userEmail && i.password === password) {
+          localStorage.setItem('tokenId', i.token)
+          // localStorage.setItem('emailData', i.email)
+          // localStorage.setItem('passwordData', i.password)
+          navigate("/home");
+          return;
         }
+      }
+        setError({
+          errorAnnouncement: "Incorrect Email Address or password"
+        }) 
     }    
    
     return (
@@ -53,6 +50,7 @@ import { useNavigate } from "react-router-dom";
           {/* <div className='signin'> */}
             <form className='form_signin'>
             <h1 className='content_signin'>Sign in</h1>
+            <div className='error'>{error.errorAnnouncement}</div>
               <div className='main_email'>
                 <label for="user_email">Email Address  </label>
                 <br />
@@ -69,9 +67,9 @@ import { useNavigate } from "react-router-dom";
                     </span>
                     <input type="email" id="user_email" placeholder="" name="email" className='input_user' 
                     onChange={(e) => setUserEmail(e.target.value)}/>
-                    <div className='error'>{error.userEmail}</div>
                   </span>  
               </div>
+          
 
               <div className='main_password'>
                 <label for="password">Password  </label>
@@ -87,7 +85,6 @@ import { useNavigate } from "react-router-dom";
                       </span>
                   </span>
                   <input type="password" id="password" placeholder="" name="password" className='input_pw' onChange={(e) => setPassword(e.target.value)}/>
-                  <div className='error'>{error.password}</div>
                   <span className='logo2_password'>
                     <span role="img" aria-label="eye-invisible" tabindex="-1" className='anticon anticon-eye-invisible logo2_hover'>
                     <svg viewBox="64 64 896 896" focusable="false" data-icon="eye-invisible" width="1em" height="1em" fill="currentColor" aria-hidden="true">
@@ -110,15 +107,8 @@ import { useNavigate } from "react-router-dom";
               <div className='tech'>
                   <a className='register' href="/register">REGISTER A NEW ACCOUNT</a>
               </div> 
-
-              <br />
-              {/* {userEmail} */}
-              <br />
-              {/* {password}          */}
             </form>
-            
-            
-          {/* </div> */}
+          
         </div>
       </div>
     ) 

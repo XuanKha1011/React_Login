@@ -1,0 +1,59 @@
+.navbar-container{
+    display: flex;
+    padding: 1rem 1.5rem;
+    justify-content: flex-end;
+    background-color: rgb(228, 228, 228);
+    align-items: center;
+}
+.navbar-container > *{
+    margin: 0 1.25rem;
+    text-decoration: none;
+    font-weight: 600;
+    color:red;
+}
+
+.home-container{
+    display: flex;
+    background-color: rgb(236, 235, 235);
+    height:600px;
+    width:60%;
+    text-align: center;
+    align-items: center;
+    flex-direction: column;
+    margin-top: 3rem;
+}
+
+.title{
+    font-size: larger;
+    color: rgb(0, 99, 230);
+}
+
+.home-title{
+    margin-top: 1rem;
+    font-size: 1.5rem;
+    font-weight: 700;
+}
+
+.App{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.body {
+    min-height: 100vh;
+    margin: 0;
+    text-rendering: optimizeSpeed;
+    line-height: 1.5;
+    font-size: 1.15rem;
+    font-family: "Inter", sans-serif;
+    background-color: #ffffff;
+}
+
+.home-user{
+    margin: 1.5rem;
+    background-color: rgb(194, 194, 194);
+    padding:0.5rem;
+    border-radius: 12px;
+}
