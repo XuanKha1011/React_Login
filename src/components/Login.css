@@ -1,107 +1,170 @@
-.containerLogin{
-    display: flex;
-    justify-content: center;
-
+@media (min-width: 992px){
+.containerLogin {
+    height: 100vh;
+}
 }
 
-.imgBanner{
-    height: 100vh;
+.containerLogin {
+    display: flex;
+    flex-direction: column;
+}
+
+@media (min-width: 992px){
+.layout-component {
+    flex-direction: row;
+    width: 100%;
+}
+}
+
+.layout-component {
+    display: flex;
+    height: 100%;
+}
+
+@media (min-width: 992px){
+.left-layout {
+    width: 50%;
+    height: 100%;
+}
+}
+
+.left-layout {
+    color: rgb(255, 255, 255);
+    background-image: url(../assets/Image/image_container.png);
+    background-size: cover;
+    background-position: left center;
+    background-repeat: round;
+    position: relative;
     width: 50%;
 }
-.loginForm{
-    height: 100vh;
+
+@media (min-width: 1128px){
+.mainSignIn {
+    width: 40%;
+}
+}
+@media (min-width: 992px){
+.right-layout {
     width: 50%;
+}
+}
+
+.right-layout {
     display: flex;
+    -webkit-box-pack: center;
     justify-content: center;
+    -webkit-box-align: center;
     align-items: center;
+    flex-direction: column;
+    text-align: center;
+    width: 50%
+}
+
+.signInForm {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    -webkit-box-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    align-items: center;
+    flex-direction: column;
+    text-align: center;
     
 }
-.main_email{
-    margin-bottom: 0.2rem;
-    text-align: start;
-    position: relative;
-}
-.main_email label{
-    color: rgba(0, 0, 0, 0.85);
-    font-size: 14px;
-    display: inline-block;
-    font-family: Gothic;
-    margin-bottom: 0.5rem;
-}
-.text_userEmail{
-    position: relative;
-    display: inline-block;
-    width: 110%;
-    min-width: 0;
-    padding: 7px 11px;
-    color: rgba(0,0,0,.85);
-    font-size: 14px;
-    line-height: 1.5715;
-    background-color: #fff;
-    background-image: none;
-    border: 1px solid #d9d9d9;
-    border-radius: 2px;
-    transition: all .3s;
-    display: inline-flex;
-}
-.logo_userEmail{
-    margin-right: 4px;
-    display: flex;
-    flex: none;
-    align-items: center;
-}
-.main_password label{
-    color: rgba(0, 0, 0, 0.85);
-    font-size: 14px;
-    display: inline-block;
-    font-family: Gothic;
-    margin-bottom: 0.5rem;
-}
-.sidebar_password{
 
-    position: relative;
-    width: 110%;
-    min-width: 0;
-    padding: 7px 11px;
-    color: rgba(0,0,0,.85);
-    font-size: 14px;
-    line-height: 1.5715;
-    background-color: #fff;
-    background-image: none;
-    border: 1px solid #d9d9d9;
-    border-radius: 2px;
-    transition: all .3s;
-    display: inline-flex;
-
-}
-.logo1_password{
-    margin-right: 4px;
-    display: flex;
-    flex: none;
-    align-items: center;
-}
-.logo_password{
-    margin-right: 4px;
-    display: flex;
-    flex: none;
-    align-items: center;
-}
-/* .logo2_password:hover{
-    visibility: inherit;
-} */
-.logo2_hover{
-    cursor: pointer;
-    transition: all .3s;
-}
-    .logo2_hover svg{
-        display: inline-block;
-    }
-.content_signin{
+.labelSignIn{
     color: rgb(5, 117, 230);
     font-size: 33px;
     transition: font-size 0.2s ease-in 0s;
     font-family: GothicB;
-    text-align: center;
+}
+
+@media (min-width: 744px){
+.mainSignIn {
+    margin-top: 2%;
+    width: 60%;
+}
+}
+
+.mainSignIn{
+    margin-bottom: 5%;
+    transition: width 0.2s ease 0s;
+}
+
+.mainEmail {
+    margin-bottom: 1.4rem;
+    text-align: start;
+    position: relative;
+}
+
+@media (min-width: 744px){
+
+.mainEmail label {
+    font-size: 16px;
+}
+}
+
+.mainEmail label {
+    color: rgba(0, 0, 0, 0.85);
+    display: inline-block;
+    font-family: Gothic;
+    margin-bottom: 0.5rem;
+}
+
+.inputEmail, .inputPassword{
+    position: relative;
+    width: 94.5%;
+    min-width: 0;
+    padding: 4px 11px;
+    color: rgba(0,0,0,.85);
+    font-size: 14px;
+    line-height: 1.5715;
+    background-color: #fff;
+    background-image: none;
+    border: 1px solid #d9d9d9;
+    border-radius: 2px;
+    transition: all .3s;
+    display: inline-flex;
+    height: 40px;
+}
+
+.inputPassword{
+    margin-bottom: 0.8rem
+}
+
+.ant-input-prefix {
+    margin-right: 4px;
+    display: flex;
+    align-items: center;
+}
+
+.mainPassword{
+    text-align: start;
+    position: relative;
+    margin-bottom: 0.8rem;
+}
+
+.mainPassword label {
+    font-size: 16px;
+    color: rgba(0, 0, 0, 0.85);
+    display: inline-block;
+    font-family: Gothic;
+    margin-bottom: 0.5rem;
+}
+
+
+.ant-input {
+    padding: 0;
+    border: none;
+    outline: none;
+}
+
+.input_password{
+    width: 150%;
+    padding: 0;
+    border: none;
+    outline: none;
 }
 
 .input_user{
@@ -110,20 +173,14 @@
     border: none;
     outline: none;
 }
-.input_pw{
-    width: 150%;
-    height: 20px;
-    padding: 0;
-    border: none;
-    outline: none;
-}
+
 .btn_submit{
     font-family: GoThic;
     border-radius: 5px;
     padding: 6px 50px;
     border: 2px solid;
     font-size: 18px;
-    width: 121%;
+    width: 100%;
     color: rgb(255, 255, 255);
     margin: 1rem 0px;
     transition: background-color 0.3s ease 0s;
@@ -131,7 +188,6 @@
     background: linear-gradient(to right, rgb(5, 117, 230), rgb(2, 27, 121));
 }
 .forget_password{
-    width: 125%;
     display: flex;
     flex-direction: row;
     -webkit-box-pack: end;
@@ -152,7 +208,6 @@
     -webkit-box-align: center;
     align-items: center;
     margin: 1rem auto;
-    width: 120%;
 }
     .or{
         width: 100%;
@@ -163,7 +218,6 @@
 
 .tech{
     margin-top: 16px;
-    width: 118%;
     padding: 5px;
     text-align: center;
 }    
@@ -176,21 +230,10 @@
         font-weight: 600;
         text-decoration: none;
     }
-@media only screen and (max-width: 744px) {
-    .containerLogin{
-        display: block;
-        
-    }
-    .imgBanner{
-        height: 100vh;
-        width: 100%;
-    }
-    
-  } 
 
 .error {
-    background-color: #F68888;
-    font-size: small;
+    color: red;
+    font-size: 16px;
     text-align: center;
     margin-bottom: 8px;
 }
