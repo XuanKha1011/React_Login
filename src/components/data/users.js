@@ -5,7 +5,7 @@ const users = [
         email: "phuong@gmail.com",
         password: "123456",
         role: "User",
-        token: "qweasdzxc"
+        token: "qweasdzxc" 
     },
     {
         id: 2,
