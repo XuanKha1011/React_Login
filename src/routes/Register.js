@@ -4,25 +4,29 @@ import "./Register.css";
 
 function Register(props) {
   const [email, setEmail] = useState("");
-  // const [password, setPassword] = useState("");
-  // const [firstName, setFirstName] = useState("");
-  // const [lastName, setLastName] = useState("");
-  // const [confirmPassword, setConfirmPassword] = useState("");
+  const [password, setPassword] = useState("");
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
 
   const handleSubmitRegister = (e) => {
     e.preventDefault();
-    console.log(email);
+    console.log(email,firstName);
   };
 
   return (
-    <div className="auth-form-container">
+    <div className="auth-form-container" onSubmit={handleSubmitRegister}>
       <h2>Register</h2>
-      <form className="login-form" onSubmit={handleSubmitRegister}>
+      <form className="login-form" >
         <label htmlFor="email">email</label>
         <input value={email} onChange={(e) => setEmail(e.target.value)}/>
-        <button className="register-btn" type="submit">Submit</button>
-      </form>
-     
+        <label htmlFor="username">Name</label>
+        <input value={firstName} onChange={(e) => setFirstName(e.target.value)}/>
+    
+    <div className="btn"> 
+    <button className="register-btn" type="submit" >Submit</button>
+    </div>  
+    </form>
     </div>
   );
 }

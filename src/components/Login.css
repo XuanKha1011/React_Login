@@ -22,13 +22,13 @@
 }
 
 @media (min-width: 992px){
-.left-layout {
+.Login-leftLayout {
     width: 50%;
     height: 100%;
 }
 }
 
-.left-layout {
+.Login-leftLayout {
     color: rgb(255, 255, 255);
     background-image: url(../assets/Image/image_container.png);
     background-size: cover;
@@ -44,12 +44,12 @@
 }
 }
 @media (min-width: 992px){
-.right-layout {
-    width: 50%;
+.Login-rightLayout {
+    width: 45%;
 }
 }
 
-.right-layout {
+.Login-rightLayout {
     display: flex;
     -webkit-box-pack: center;
     justify-content: center;
@@ -83,7 +83,7 @@
 @media (min-width: 744px){
 .mainSignIn {
     margin-top: 2%;
-    width: 60%;
+    width: 50%;
 }
 }
 

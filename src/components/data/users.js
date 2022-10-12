@@ -22,6 +22,14 @@ const users = [
         password: "09876",
         role: "admin",
         token: "lkjasdqewqedsadsa"
+    },
+    {
+        id: 4,
+        name: "Lai Nguyen Minh Quan",
+        email: "quan@gmail.com",
+        password: "09876",
+        role: "User",
+        token: "1"
     }
 ];
 

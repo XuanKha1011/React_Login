@@ -14,11 +14,13 @@ function Login(props) {
   });
 
   useEffect(() => {
-    const getToken = localStorage.getItem("tokenId");
+    const getToken = localStorage.getItem("tokenId");    
+    
 
     if (getToken) {
       navigate("/home");
     }
+  
   });
 
   const handleSubmit = () => {
@@ -37,8 +39,8 @@ function Login(props) {
   return (
     <div className="containerLogin">
       <div className="layout-component">
-        <div className="left-layout"></div>
-        <div className="right-layout">
+        <div className="Login-leftLayout"></div>
+        <div className="Login-rightLayout">
           <div className="signInForm">
             <div>
               <h1 className="labelSignIn">Sign in</h1>
