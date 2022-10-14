@@ -5,19 +5,14 @@ import "./Home.css";
 
 function Home() {
   let navigate = useNavigate();
-  const storageMessages = JSON.parse(localStorage.getItem('messages'))
+
 
   const [user, setUser] = useState({});
   const [message, setMessage] = useState('');
-  const [messages, setMessages] = useState(storageMessages ?? []);
+  const [messages, setMessages] = useState([]);
 
   const handleSubmitMessages = () => {
-    setMessages(prev => {
-      const newMessages = [...prev, message]
-            //save to local storage
-      const jsonMessages = JSON.stringify(newMessages)
-      localStorage.setItem('messages', jsonMessages)
-    })
+    setMessages(prev => [...prev, message])
     setMessage("");
   };
 
