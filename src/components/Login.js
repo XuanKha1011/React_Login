@@ -1,39 +1,38 @@
 import React, { useState, useEffect } from "react";
 import "./Login.css";
 import { useNavigate } from "react-router-dom";
-import users from "./data/users";
 
 function Login(props) {
   let navigate = useNavigate();
 
-  const [userEmail, setUserEmail] = useState("");
+  const [username, setUserName] = useState("");
   const [password, setPassword] = useState("");
 
   const [error, setError] = useState({
     errorAnnouncement: "",
   });
 
-  useEffect(() => {
-    const getToken = localStorage.getItem("tokenId");    
-    
 
-    if (getToken) {
-      navigate("/home");
-    }
-  
-  });
 
-  const handleSubmit = () => {
-    for (let i of users) {
-      if (i.email === userEmail && i.password === password) {
-        localStorage.setItem("tokenId", i.token);
-        navigate("/home");
-        return;
-      }
-    }
-    setError({
-      errorAnnouncement: "Incorrect Email Address or password",
+  const handleSubmit = async () => {
+    let item = { username, password };
+    let result = await fetch("https://dummyjson.com/auth/login", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(item),
     });
+    let users = await result.json();
+    localStorage.setItem("user-info", JSON.stringify(users));
+  
+    let userToken = users.token;
+    localStorage.setItem("tokenId", JSON.stringify(userToken));
+    
+    if (userToken === undefined)
+      setError({
+        errorAnnouncement: "Incorrect Email Address or password",
+      });
+    else navigate('/home')
+
   };
 
   return (
@@ -48,7 +47,7 @@ function Login(props) {
             <div className="error">{error.errorAnnouncement}</div>
             <form className="mainSignIn">
               <div className="mainEmail">
-                <label for="user_email">Email Address </label>
+                <label for="user_email">Username </label>
                 <span className="inputEmail">
                   <span class="ant-input-prefix">
                     <span
@@ -72,10 +71,10 @@ function Login(props) {
                   <input
                     type="email"
                     id="user_email"
-                    placeholder="Email"
+                    placeholder="Username"  
                     name="email"
                     className="input_user"
-                    onChange={(e) => setUserEmail(e.target.value)}
+                    onChange={(e) => setUserName(e.target.value)}
                   />
                 </span>
               </div>

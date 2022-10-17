@@ -5,6 +5,7 @@ import Products from './routes/Products'
 import NotFound from './routes/notFound'
 import Login from './components/Login'
 import Register from './routes/Register';
+import Admin from './routes/Admin';
 
 import {
   BrowserRouter as Router,
@@ -18,6 +19,7 @@ function App() {
     <Router>
       <Routes>
         <Route path="/" element={<Login />} />
+        <Route path="/admin" element= {<Admin />} />
         <Route path="/login" element={<Login />} />
         <Route path="/home" element={<Home />} />
         <Route path="/about" element={<About />} />

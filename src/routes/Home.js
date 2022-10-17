@@ -1,50 +1,36 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import users from "./../components/data/users";
+
 import "./Home.css";
 
 function Home() {
   let navigate = useNavigate();
 
-
-  const [user, setUser] = useState({});
-  const [message, setMessage] = useState('');
+  const [message, setMessage] = useState("");
   const [messages, setMessages] = useState([]);
 
+  const users = JSON.parse(localStorage.getItem("user-info"));
+
+  useEffect(() => {
+    if (users.id === 1) navigate("/Admin");
+
+    if (getToken !== users.token) {
+      navigate("/");
+      localStorage.clear();
+      window.location.reload();
+    }
+  });
+  const getToken = localStorage.getItem("tokenId").slice(1, -1);
+
   const handleSubmitMessages = () => {
-    setMessages(prev => [...prev, message])
+    setMessages((prev) => [...prev, message]);
     setMessage("");
   };
 
-
-  useEffect(() => {
-    const getToken = localStorage.getItem("tokenId");
-
-    var newUser = users.map(handleUser);
-    let flag = 0;
-    function handleUser(user) {
-      if (getToken === user.token) {
-        setUser({
-          name: user.name,
-          id: user.id,
-          email: user.email,
-        });
-      }
-    }
-
-    for (let i of users) {
-      if (getToken === i.token) flag = 1;
-    }
-    if (flag === 0) {
-      navigate("/");
-      localStorage.clear();
-    }
-  }, []);
-
   const handleClick = () => {
+    navigate("/login");
     localStorage.clear();
     window.location.reload();
-    navigate("/");
   };
 
   return (
@@ -66,7 +52,9 @@ function Home() {
             <div className="chatBoard">
               <ul>
                 {messages.map((message, index) => (
-                  <li key={index}>{user.name} {message}</li>
+                  <li key={index}>
+                    {users.firstName}: {message}
+                  </li>
                 ))}
               </ul>
             </div>
@@ -75,8 +63,8 @@ function Home() {
                 className="inputBox"
                 placeholder="Type your message"
                 onChange={(e) => setMessage(e.target.value)}
-                  value={message}
-             />
+                value={message}
+              />
               <span>
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -88,28 +76,28 @@ function Home() {
                 </svg>
               </span>
               <button onClick={handleSubmitMessages}>
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke-width="1"
-                stroke="currentColor"
-                class="chatIcon paper-airplane"
-              >
-                <path
-                  color="darkblue"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  d="M6 12L3.269 3.126A59.768 59.768 0 0121.485 12 59.77 59.77 0 013.27 20.876L5.999 12zm0 0h7.5"
-                />
-              </svg>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke-width="1"
+                  stroke="currentColor"
+                  class="chatIcon paper-airplane"
+                >
+                  <path
+                    color="darkblue"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    d="M6 12L3.269 3.126A59.768 59.768 0 0121.485 12 59.77 59.77 0 013.27 20.876L5.999 12zm0 0h7.5"
+                  />
+                </svg>
               </button>
             </div>
           </div>
         </div>
         <div className="Home-rightLayout">
           <nav className="navbar-container">
-            <span className="userName">{user.name}</span>
+            <span className="userName">{users.firstName}</span>
             <button
               type="button"
               onClick={handleClick}
