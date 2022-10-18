@@ -3,17 +3,20 @@ import React from "react";
 
 import { useEffect } from "react";
 import { useState } from "react";
+import "./products.css";
 
-import "./users.css";
-function Users() {
-  const [users, setUsers] = useState([]);
+
+
+function Products() {
+  const [products, setProducts] = useState([]);
   const [data, setData] = useState({});
 
   const handleUser = () => {
-    fetch("https://dummyjson.com/users")
+    fetch("https://dummyjson.com/products")
       .then((res) => res.json())
       .then((data) => {
-        setUsers(data.users);
+        setProducts(data.products);
+        console.log(products)
       });
   };
   useEffect(() => {
@@ -51,17 +54,30 @@ function Users() {
         </div>
         <div className="content bg-light">
           <nav className="bg-white">
-            <ul>Admin / Users</ul>
+            <ul>Admin / Products</ul>
             <ul className="text-end">Logout</ul>
           </nav>
           <div className="row container bg-white">
             <div className="columnName col-sm-1 ">
               <ul>
                 <ul className="text-start">id</ul>
-                {users.map((user) => {
+                {products.map((product) => {
                   return (
-                    <li className="list-unstyled px-2" key={user.id}>
-                      {user.id}
+                    <li className="list-unstyled px-2" key={product.id}>
+                      {product.id}
+                    </li>
+                  );
+                })}
+              </ul>
+            </div>
+            <div className="columnName col-sm-4 text-start">
+              <ul>
+                <ul className="text-center">title</ul>
+                {products.map((product) => {
+                  return (
+                    <li className="list-unstyled px-2" key={product.title}>
+                      {" "}
+                      {product.title}
                     </li>
                   );
                 })}
@@ -69,38 +85,25 @@ function Users() {
             </div>
             <div className="columnName col-sm-2 text-start">
               <ul>
-                <ul className="text-center">firstName</ul>
-                {users.map((user) => {
+                <ul className="text-center">price</ul>
+                {products.map((product) => {
                   return (
-                    <li className="list-unstyled px-2" key={user.firstName}>
+                    <li className="list-unstyled px-2" key={product.price}>
                       {" "}
-                      {user.firstName}
+                      {product.price}
                     </li>
                   );
                 })}
               </ul>
             </div>
-            <div className="columnName col-sm-3 text-start">
+            <div className="columnName col-sm-2 text-start">
               <ul>
-                <ul className="text-center">lastName</ul>
-                {users.map((user) => {
+                <ul className="text-center">quantity</ul>
+                {products.map((product) => {
                   return (
-                    <li className="list-unstyled px-2" key={user.lastName}>
+                    <li className="list-unstyled px-2" key={product.stock}>
                       {" "}
-                      {user.lastName}
-                    </li>
-                  );
-                })}
-              </ul>
-            </div>
-            <div className="columnName col-sm-3 text-start">
-              <ul>
-                <ul className="text-center">Email</ul>
-                {users.map((user) => {
-                  return (
-                    <li className="list-unstyled px-2" key={user.email}>
-                      {" "}
-                      {user.email}
+                      {product.stock}
                     </li>
                   );
                 })}
@@ -108,12 +111,11 @@ function Users() {
             </div>
             <div className="columnName col text-start">
               <ul>
-                <ul className="text-center">Phone</ul>
-                {users.map((user) => {
+                <ul className="text-center">Total</ul>
+                {products.map((product) => {
                   return (
-                    <li className="list-unstyled px-2" key={user.phone}>
-                      {" "}
-                      {user.phone}
+                    <li className="list-unstyled px-2" key={product.total}>
+                      {product.stock * product.price}
                     </li>
                   );
                 })}
@@ -138,4 +140,4 @@ function Users() {
   );
 }
 
-export default Users;
+export default Products;

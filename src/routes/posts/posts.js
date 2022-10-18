@@ -1,19 +1,18 @@
-// import { DataGrid } from "@mui/x-data-grid";
 import React from "react";
-
 import { useEffect } from "react";
 import { useState } from "react";
+import "./posts.css";
 
-import "./users.css";
-function Users() {
-  const [users, setUsers] = useState([]);
+
+function Posts() {
+  const [posts, setPosts] = useState([]);
   const [data, setData] = useState({});
 
   const handleUser = () => {
-    fetch("https://dummyjson.com/users")
+    fetch("https://dummyjson.com/posts")
       .then((res) => res.json())
       .then((data) => {
-        setUsers(data.users);
+        setPosts(data.posts);
       });
   };
   useEffect(() => {
@@ -51,86 +50,62 @@ function Users() {
         </div>
         <div className="content bg-light">
           <nav className="bg-white">
-            <ul>Admin / Users</ul>
+            <ul>Admin / posts</ul>
             <ul className="text-end">Logout</ul>
           </nav>
           <div className="row container bg-white">
-            <div className="columnName col-sm-1 ">
+            <div className="columnName col-sm-1">
               <ul>
                 <ul className="text-start">id</ul>
-                {users.map((user) => {
+                {posts.map((post) => {
                   return (
-                    <li className="list-unstyled px-2" key={user.id}>
-                      {user.id}
+                    <li className="list-unstyled px-2" key={post.id}>
+                      {post.id}
                     </li>
                   );
                 })}
               </ul>
             </div>
-            <div className="columnName col-sm-2 text-start">
+            <div className="columnName col-sm text-start">
               <ul>
-                <ul className="text-center">firstName</ul>
-                {users.map((user) => {
+                <ul className="text-center">title</ul>
+                {posts.map((post) => {
                   return (
-                    <li className="list-unstyled px-2" key={user.firstName}>
+                    <li className="list-unstyled px-2" key={post.title}>
                       {" "}
-                      {user.firstName}
+                      {post.title}
                     </li>
                   );
                 })}
               </ul>
             </div>
-            <div className="columnName col-sm-3 text-start">
+            <div className="columnName col-sm-6 text-start">
               <ul>
-                <ul className="text-center">lastName</ul>
-                {users.map((user) => {
+                <ul className="text-center">body</ul>
+                {posts.map((posts) => {
                   return (
-                    <li className="list-unstyled px-2" key={user.lastName}>
+                    <li className="list-unstyled px-2" key={posts.body}>
                       {" "}
-                      {user.lastName}
+                      {posts.body}
                     </li>
                   );
                 })}
               </ul>
             </div>
-            <div className="columnName col-sm-3 text-start">
+            <div className="columnName col-sm text-start">
               <ul>
-                <ul className="text-center">Email</ul>
-                {users.map((user) => {
+                <ul className="text-center">Tags</ul>
+                {posts.map((post) => {
                   return (
-                    <li className="list-unstyled px-2" key={user.email}>
+                    <li className="list-unstyled px-2" key={post.tags}>
                       {" "}
-                      {user.email}
+                      {post.tags}
                     </li>
                   );
                 })}
               </ul>
             </div>
-            <div className="columnName col text-start">
-              <ul>
-                <ul className="text-center">Phone</ul>
-                {users.map((user) => {
-                  return (
-                    <li className="list-unstyled px-2" key={user.phone}>
-                      {" "}
-                      {user.phone}
-                    </li>
-                  );
-                })}
-              </ul>
-            </div>
-            {/* <div className="columnName col">
-              <ul>
-                {users.map((user) => {
-                  return (
-                    <li className="list-unstyled px-2" key={user.image}>
-                      {" "}
-                      {user.image}
-                    </li>
-                  );
-                })}
-              </ul>
-            </div> */}
+
           </div>
         </div>
       </div>
@@ -138,4 +113,4 @@ function Users() {
   );
 }
 
-export default Users;
+export default Posts;
