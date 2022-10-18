@@ -22,6 +22,7 @@ function Login(props) {
       body: JSON.stringify(item),
     });
     let users = await result.json();
+    console.log(users)
     localStorage.setItem("user-info", JSON.stringify(users));
   
     let userToken = users.token;

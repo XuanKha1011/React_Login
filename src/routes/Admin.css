@@ -1,15 +1,28 @@
-body{
+/* body{
     background: #eee;
 
+} */
+.logoAuzuno{
+    background-image: url(../assets/Image/logoAuzuno.png);
+    background-size: 100%;
+    min-width: 250px;
+    max-width: 250px;
+    height: 100px;
 }
 
 #side_nav{
-    background-color: #000;
+    background-color: cadetblue;
     min-width: 250px;
     max-width: 250px;
+
+    
 }
 
 .content{
     min-height: 100vh;
     width: 100% ;
+}
+
+hr.h-color{
+    background-color: #eee;
 }
