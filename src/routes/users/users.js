@@ -66,20 +66,19 @@ function Users() {
             <ul className="text-end">Logout</ul>
           </nav>
           <div className="row container bg-white">
-            <div className="columnName col-1 ">
+            <div className="columnName col-sm-1 ">
               <ul>
-                <ul className="text-center ">id</ul>
+                <ul className="text-start">id</ul>
                 {users.map((user) => {
                   return (
                     <li className="list-unstyled px-2" key={user.id}>
-                      {" "}
                       {user.id}
                     </li>
                   );
                 })}
               </ul>
             </div>
-            <div className="columnName col text-start">
+            <div className="columnName col-sm-2 text-start">
               <ul>
                 <ul className="text-center">firstName</ul>
                 {users.map((user) => {
@@ -92,7 +91,7 @@ function Users() {
                 })}
               </ul>
             </div>
-            <div className="columnName col text-start">
+            <div className="columnName col-sm-3 text-start">
               <ul>
                 <ul className="text-center">lastName</ul>
                 {users.map((user) => {
@@ -105,7 +104,7 @@ function Users() {
                 })}
               </ul>
             </div>
-            <div className="columnName col text-start">
+            <div className="columnName col-sm-3 text-start">
               <ul>
                 <ul className="text-center">Email</ul>
                 {users.map((user) => {
