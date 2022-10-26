@@ -14,6 +14,7 @@ import {
   Routes,
   Route,
 }from "react-router-dom"
+import Pagination from './routes/Pagination';
 
 
 function App() {
@@ -21,7 +22,6 @@ function App() {
     <Router>
       <Routes>
         <Route path="/" element={<Login />} />
-        <Route path="/login" element={<Login />} />
         <Route path="/admin" element= {<Admin />} />
         <Route path="/admin/users" element= {<Users />} />
         <Route path="/admin/posts" element= {<Posts />} />

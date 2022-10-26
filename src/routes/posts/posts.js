@@ -22,7 +22,7 @@ function Posts() {
   }
 
   const handleClick = () => {
-    navigate("/login");
+    navigate("/");
     localStorage.clear();
     window.location.reload();
   };

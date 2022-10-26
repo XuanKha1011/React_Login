@@ -10,7 +10,7 @@ function Admin() {
   const users = JSON.parse(localStorage.getItem("user-info"));
 
   const handleClick = () => {
-    navigate("/login");
+    navigate("/");
     localStorage.clear();
     window.location.reload();
   };

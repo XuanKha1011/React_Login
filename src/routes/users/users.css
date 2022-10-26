@@ -9,12 +9,14 @@ table {
     width: 100%;
   }
   
-  th, td {
+  /* th, td {
     text-align: left;
     padding: 8px;
-  }
+    overflow-x: auto;
+ 
+  } */
   
-  tr:nth-child(even) {background-color: #f2f2f2;}
+  /* tr:nth-child(even) {background-color: #f2f2f2;} */
 
 .directPage {
   padding-top: 20px;
@@ -22,7 +24,13 @@ table {
 }
 
 .picture {
-  height: 150px;
-  width: 150px;
+  height: 40px;
+  width: 40px;
 }
+
+.icons {
+  height: 25px;
+  width: 25px;
+}
+
 

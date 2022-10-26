@@ -15,7 +15,7 @@ function Products() {
   }
 
   const handleClick = () => {
-    navigate("/login");
+    navigate("/");
     localStorage.clear();
     window.location.reload();
   };
