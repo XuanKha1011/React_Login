@@ -28,9 +28,9 @@ function Users() {
   const [loading, setLoading] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [usersPerPage] = useState(10);
-  
-  const [a,setA] = useState({})
-  const [b,setB] = useState({})
+
+  const [a, setA] = useState({});
+  const [b, setB] = useState({});
 
   const directAdmin = () => {
     navigate("/admin");
@@ -57,6 +57,7 @@ function Users() {
     data = data.filter((item) => item.id !== user.id);
     setUsers(data);
   };
+
   const handleSubmitNewUser = () => {
     let Data = [...users];
     fetch("https://dummyjson.com/users/add", {
@@ -74,7 +75,14 @@ function Users() {
       .then((data) => {
         Data.push(data);
         setUsers(Data);
-      });
+      })
+      .then(
+        setFirstName(""),
+        setLastName(""),
+        setEmailUser(""),
+        setPhoneUser(""),
+        setImageUser("")
+      );
   };
 
   const handleUpdateUser = async (user, index) => {
@@ -90,13 +98,19 @@ function Users() {
         phone: phoneUserUpdate,
         image: imageUserUpdate,
       }),
-    }).then((res) => res.json())
+    })
+      .then((res) => res.json())
       .then((data) => {
-        Data[index + currentPage*usersPerPage- usersPerPage].firstName = data.firstName;
-        Data[index + currentPage*usersPerPage- usersPerPage].lastName = data.lastName;
-        Data[index + currentPage*usersPerPage- usersPerPage].email = data.email;
-        Data[index + currentPage*usersPerPage- usersPerPage].phone = data.phone;
-        Data[index + currentPage*usersPerPage- usersPerPage].image = data.image;
+        Data[index + currentPage * usersPerPage - usersPerPage].firstName =
+          data.firstName;
+        Data[index + currentPage * usersPerPage - usersPerPage].lastName =
+          data.lastName;
+        Data[index + currentPage * usersPerPage - usersPerPage].email =
+          data.email;
+        Data[index + currentPage * usersPerPage - usersPerPage].phone =
+          data.phone;
+        Data[index + currentPage * usersPerPage - usersPerPage].image =
+          data.image;
       });
     await setUsers(Data);
   };
@@ -221,6 +235,7 @@ function Users() {
                               <form>
                                 <div class="form-floating mb-3 mt-3">
                                   <input
+                                  value={firstName}
                                     type="text"
                                     class="form-control"
                                     placeholder="Enter first name"
@@ -232,6 +247,7 @@ function Users() {
                                 </div>
                                 <div class="form-floating mt-3 mb-3">
                                   <input
+                                  value={lastName}
                                     type="text"
                                     class="form-control"
                                     placeholder="Enter last name"
@@ -243,6 +259,7 @@ function Users() {
                                 </div>
                                 <div class="form-floating mt-3 mb-3">
                                   <input
+                                  value={emailUser}
                                     type="text"
                                     class="form-control"
                                     placeholder="Enter email"
@@ -254,6 +271,7 @@ function Users() {
                                 </div>
                                 <div class="form-floating mt-3 mb-3">
                                   <input
+                                  value={phoneUser}
                                     type="text"
                                     class="form-control"
                                     placeholder="Enter phone number"
@@ -266,6 +284,7 @@ function Users() {
                                 <div class="form-floating mt-3 mb-3">
                                   <label class="input-group-text">URL</label>
                                   <input
+                                  value={imageUser}
                                     type="text"
                                     class="form-control"
                                     placeholder="Image"
@@ -323,7 +342,10 @@ function Users() {
                         className="btn btn-b"
                         data-bs-toggle="modal"
                         data-bs-target="#myModalUpdate"
-                        onClick={(e) => {setA(user); setB(index)}}
+                        onClick={(e) => {
+                          setA(user);
+                          setB(index);
+                        }}
                       >
                         <svg
                           xmlns="http://www.w3.org/2000/svg"
@@ -367,6 +389,7 @@ function Users() {
                                 </div>
                                 <div class="form-floating mt-3 mb-3">
                                   <input
+                                    value={user.lastName}
                                     type="text"
                                     class="form-control"
                                     placeholder="Enter last name"
@@ -378,6 +401,7 @@ function Users() {
                                 </div>
                                 <div class="form-floating mt-3 mb-3">
                                   <input
+                                    value={user.email}
                                     type="text"
                                     class="form-control"
                                     placeholder="Enter email"
@@ -389,6 +413,7 @@ function Users() {
                                 </div>
                                 <div class="form-floating mt-3 mb-3">
                                   <input
+                                    value={user.phone}
                                     type="text"
                                     class="form-control"
                                     placeholder="Enter phone number"
@@ -417,7 +442,7 @@ function Users() {
                                 type="button"
                                 className="btn btn-primary"
                                 data-bs-dismiss="modal"
-                                onClick={(e) => handleUpdateUser(a,b)}
+                                onClick={(e) => handleUpdateUser(a, b)}
                               >
                                 Update
                               </button>
