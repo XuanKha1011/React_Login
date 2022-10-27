@@ -86,7 +86,6 @@ function Users() {
   };
 
   const handleUpdateUser = async (user, index) => {
-    console.log(index);
     let Data = [...users];
     await fetch(`https://dummyjson.com/users/${user.id}`, {
       method: "PUT" /* or PATCH */,
@@ -111,7 +110,14 @@ function Users() {
           data.phone;
         Data[index + currentPage * usersPerPage - usersPerPage].image =
           data.image;
-      });
+      })
+      .then(
+        setFirstNameUpdate(""),
+        setLastNameUpdate(""),
+        setEmailUserUpdate(""),
+        setPhoneUserUpdate(""),
+        setImageUserUpdate("")
+      );
     await setUsers(Data);
   };
 
@@ -343,6 +349,11 @@ function Users() {
                         data-bs-toggle="modal"
                         data-bs-target="#myModalUpdate"
                         onClick={(e) => {
+                          setFirstNameUpdate(user.firstName)
+                          setLastNameUpdate(user.lastName)
+                          setEmailUserUpdate(user.email)
+                          setPhoneUserUpdate(user.phone)
+                          setImageUserUpdate(user.image)
                           setA(user);
                           setB(index);
                         }}
@@ -378,6 +389,7 @@ function Users() {
                               <form>
                                 <div class="form-floating mb-3 mt-3">
                                   <input
+                                    value={firstNameUpdate}
                                     type="text"
                                     class="form-control"
                                     placeholder="Enter first name"
@@ -389,7 +401,7 @@ function Users() {
                                 </div>
                                 <div class="form-floating mt-3 mb-3">
                                   <input
-                                    value={user.lastName}
+                                    value={lastNameUpdate}
                                     type="text"
                                     class="form-control"
                                     placeholder="Enter last name"
@@ -401,7 +413,7 @@ function Users() {
                                 </div>
                                 <div class="form-floating mt-3 mb-3">
                                   <input
-                                    value={user.email}
+                                    value={emailUserUpdate}
                                     type="text"
                                     class="form-control"
                                     placeholder="Enter email"
@@ -413,7 +425,7 @@ function Users() {
                                 </div>
                                 <div class="form-floating mt-3 mb-3">
                                   <input
-                                    value={user.phone}
+                                    value={phoneUserUpdate}
                                     type="text"
                                     class="form-control"
                                     placeholder="Enter phone number"
@@ -426,6 +438,7 @@ function Users() {
                                 <div class="form-floating mt-3 mb-3">
                                   <label class="input-group-text">URL</label>
                                   <input
+                                  value={imageUserUpdate}
                                     type="text"
                                     class="form-control"
                                     placeholder="Image"

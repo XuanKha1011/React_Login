@@ -4,7 +4,6 @@ import { useState } from "react";
 import "./posts.css";
 import { useNavigate } from "react-router-dom";
 import Pagination from "../../components/Pagination";
-import { faRandom } from "@fortawesome/free-solid-svg-icons";
 
 function Posts() {
   let navigate = useNavigate();
@@ -20,8 +19,8 @@ function Posts() {
   const [titleUpdate, setTitleUpdate] = useState("");
   const [bodyUpdate, setBodyUpdate] = useState("");
   const [tagsUpdate, setTagsUpdate] = useState("");
-  const [a,setA] = useState({})
-  const [b,setB] = useState({})
+  const [a, setA] = useState({});
+  const [b, setB] = useState({});
   const handleUser = () => {
     fetch("https://dummyjson.com/posts")
       .then((res) => res.json())
@@ -63,7 +62,8 @@ function Posts() {
       .then((data) => {
         finalData = Data.concat(data);
         setPosts(finalData);
-      });
+      })
+      .then(setNewTitle(""), setNewBody(""), setNewTags(""));
   };
 
   const handleOnClickDelete = (post) => {
@@ -82,11 +82,12 @@ function Posts() {
         body: bodyUpdate,
         tags: tagsUpdate,
       }),
-    }).then((res) => res.json())
+    })
+      .then((res) => res.json())
       .then((data) => {
-        Data[index + currentPage*limit- limit].title = data.title;
-        Data[index + currentPage*limit- limit].body = data.body;
-        Data[index + currentPage*limit- limit].tags = data.tags;
+        Data[index + currentPage * limit - limit].title = data.title;
+        Data[index + currentPage * limit - limit].body = data.body;
+        Data[index + currentPage * limit - limit].tags = data.tags;
       });
     await setPosts(Data);
   };
@@ -199,6 +200,7 @@ function Posts() {
                               <form>
                                 <div class="form-floating mb-3 mt-3">
                                   <input
+                                    value={newTitle}
                                     type="text"
                                     class="form-control"
                                     placeholder="Enter title"
@@ -210,6 +212,7 @@ function Posts() {
                                 </div>
                                 <div class="form-floating mt-3 mb-3">
                                   <input
+                                    value={newBody}
                                     type="text"
                                     class="form-control"
                                     placeholder="Enter Body"
@@ -219,6 +222,7 @@ function Posts() {
                                 </div>
                                 <div class="form-floating mt-3 mb-3">
                                   <input
+                                    value={newTags}
                                     type="text"
                                     class="form-control"
                                     placeholder="Enter Tags"
@@ -273,7 +277,13 @@ function Posts() {
                         className="btn btn-b"
                         data-bs-toggle="modal"
                         data-bs-target="#myModalUpdate"
-                        onClick={(e) => {setA(post); setB(index)}}
+                        onClick={(e) => {
+                          setA(post);
+                          setB(index);
+                          setTitleUpdate(post.title);
+                          setBodyUpdate(post.body);
+                          setTagsUpdate(post.tags);
+                        }}
                       >
                         <svg
                           xmlns="http://www.w3.org/2000/svg"
@@ -306,6 +316,7 @@ function Posts() {
                               <form>
                                 <div class="form-floating mb-3 mt-3">
                                   <input
+                                    value={titleUpdate}
                                     type="text"
                                     class="form-control"
                                     placeholder="Enter tittle"
@@ -317,6 +328,7 @@ function Posts() {
                                 </div>
                                 <div class="form-floating mt-3 mb-3">
                                   <input
+                                    value={bodyUpdate}
                                     type="text"
                                     class="form-control"
                                     placeholder="Enter body"
@@ -328,6 +340,7 @@ function Posts() {
                                 </div>
                                 <div class="form-floating mt-3 mb-3">
                                   <input
+                                    value={tagsUpdate}
                                     type="text"
                                     class="form-control"
                                     placeholder="Enter Tags"

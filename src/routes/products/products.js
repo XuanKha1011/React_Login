@@ -21,10 +21,9 @@ function Products() {
   const [titleUpdate, setTitleUpdate] = useState("");
   const [priceUpdate, setPriceUpdate] = useState("");
   const [quantityUpdate, setQuantityUpdate] = useState("");
-  const [imagesUpdate, setImagesUpdate] = useState("");    
-  const [a,setA] = useState({})
-  const [b,setB] = useState({})
-
+  const [imagesUpdate, setImagesUpdate] = useState("");
+  const [a, setA] = useState({});
+  const [b, setB] = useState({});
 
   const directAdmin = () => {
     navigate("/admin");
@@ -43,7 +42,7 @@ function Products() {
       await fetch(`https://dummyjson.com/products`)
         .then((res) => res.json())
         .then((data) => {
-           setProducts(data.products);
+          setProducts(data.products);
         });
     };
     handleUser();
@@ -66,7 +65,8 @@ function Products() {
         Data.push(data);
         console.log(Data);
         setProducts(Data);
-      });
+      })
+      .then(setTitle(""), setPrice(""), setQuantity(""), setImages(""));
   };
 
   const handleOnClickDelete = (product) => {
@@ -86,12 +86,13 @@ function Products() {
         stock: quantityUpdate,
         images: imagesUpdate,
       }),
-    }).then((res) => res.json())
+    })
+      .then((res) => res.json())
       .then((data) => {
-        Data[index + currentPage*limit- limit].title = data.title;
-        Data[index + currentPage*limit- limit].price = data.price;
-        Data[index + currentPage*limit- limit].stock = data.stock;
-        Data[index + currentPage*limit- limit].images = data.images;
+        Data[index + currentPage * limit - limit].title = data.title;
+        Data[index + currentPage * limit - limit].price = data.price;
+        Data[index + currentPage * limit - limit].stock = data.stock;
+        Data[index + currentPage * limit - limit].images = data.images;
       });
     await setProducts(Data);
   };
@@ -219,28 +220,27 @@ function Products() {
                               <form>
                                 <div class="form-floating mb-3 mt-3">
                                   <input
+                                    value={title}
                                     type="text"
                                     class="form-control"
                                     placeholder="Enter title"
-                                    onChange={(e) =>
-                                      setTitle(e.target.value)
-                                    }
+                                    onChange={(e) => setTitle(e.target.value)}
                                   />
                                   <label>Title Product</label>
                                 </div>
                                 <div class="form-floating mt-3 mb-3">
                                   <input
+                                    value={price}
                                     type="text"
                                     class="form-control"
                                     placeholder="Enter Price"
-                                    onChange={(e) =>
-                                      setPrice(e.target.value)
-                                    }
+                                    onChange={(e) => setPrice(e.target.value)}
                                   />
                                   <label>Price</label>
                                 </div>
                                 <div class="form-floating mt-3 mb-3">
                                   <input
+                                    value={quantity}
                                     type="text"
                                     class="form-control"
                                     placeholder="Enter quantity"
@@ -253,12 +253,11 @@ function Products() {
                                 <div class="form-floating mt-3 mb-3">
                                   <label class="input-group-text">URL</label>
                                   <input
+                                    value={images}
                                     type="text"
                                     class="form-control"
                                     placeholder="Image"
-                                    onChange={(e) =>
-                                      setImages(e.target.value)
-                                    }
+                                    onChange={(e) => setImages(e.target.value)}
                                   />
                                 </div>
                               </form>
@@ -309,7 +308,14 @@ function Products() {
                         className="btn btn-b"
                         data-bs-toggle="modal"
                         data-bs-target="#myModalUpdate"
-                        onClick={(e) => {setA(product); setB(index)}}
+                        onClick={(e) => {
+                          setA(product);
+                          setB(index);
+                          setTitleUpdate(product.title);
+                          setQuantityUpdate(product.stock);
+                          setPriceUpdate(product.price);
+                          setImagesUpdate(product.images);
+                        }}
                       >
                         <svg
                           xmlns="http://www.w3.org/2000/svg"
@@ -342,6 +348,7 @@ function Products() {
                               <form>
                                 <div class="form-floating mb-3 mt-3">
                                   <input
+                                    value={titleUpdate}
                                     type="text"
                                     class="form-control"
                                     placeholder="Enter first name"
@@ -353,6 +360,7 @@ function Products() {
                                 </div>
                                 <div class="form-floating mt-3 mb-3">
                                   <input
+                                    value={priceUpdate}
                                     type="text"
                                     class="form-control"
                                     placeholder="Enter price"
@@ -364,6 +372,7 @@ function Products() {
                                 </div>
                                 <div class="form-floating mt-3 mb-3">
                                   <input
+                                    value={quantityUpdate}
                                     type="text"
                                     class="form-control"
                                     placeholder="Enter Quantity"
@@ -377,6 +386,7 @@ function Products() {
                                 <div class="form-floating mt-3 mb-3">
                                   <label class="input-group-text">URL</label>
                                   <input
+                                    value={imagesUpdate}
                                     type="text"
                                     class="form-control"
                                     placeholder="Image"
