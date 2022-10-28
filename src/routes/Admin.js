@@ -31,21 +31,21 @@ function Admin() {
             </div>
           </div>
           <ul className="list-unstyled px-2 text-center ">
-            <div className="directPage">
+            {/* <div className="directPage">
               <a href="admin/users" className="text-decoration-none text-white py-3">
                 users
               </a>
-            </div>
+            </div> */}
             <div className="directPage">
               <a href="admin/products" className="text-decoration-none text-white">
                 products
               </a>
             </div>
-            <div className="directPage">
+            {/* <div className="directPage">
               <a href="admin/posts" className="text-decoration-none text-white">
                 posts
               </a>
-            </div>
+            </div> */}
           </ul>
         </div>
         <div className="content bg-light">

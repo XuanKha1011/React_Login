@@ -52,12 +52,12 @@
 import React from 'react'
 
 const Pagination = ({totalRows, limit, pagination}) => {
-    const pageNumbers = [];
 
+    const pageNumbers = [];
     for (let i = 1; i <= Math.ceil(totalRows/ limit);i++){
         pageNumbers.push(i);
     }
-  
+ 
   return (
     <nav>
         <ul className='pagination'>

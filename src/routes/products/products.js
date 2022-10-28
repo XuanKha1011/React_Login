@@ -37,7 +37,6 @@ function Products() {
 
   useEffect(() => {
     if (localStorageData.id !== 1) navigate("/Home");
-
     const handleUser = async () => {
       await fetch(`https://dummyjson.com/products`)
         .then((res) => res.json())
@@ -47,6 +46,9 @@ function Products() {
     };
     handleUser();
   }, []);
+
+  products.sort((a, b) => b.id - a.id);
+  console.log(products);
 
   const handleSubmitNewProduct = () => {
     let Data = [...products];
@@ -62,8 +64,7 @@ function Products() {
     })
       .then((res) => res.json())
       .then((data) => {
-        Data.push(data);
-        console.log(Data);
+        Data.unshift(data);
         setProducts(Data);
       })
       .then(setTitle(""), setPrice(""), setQuantity(""), setImages(""));
@@ -120,21 +121,21 @@ function Products() {
             </div>
           </div>
           <ul className="list-unstyled px-2 text-center ">
-            <div className="directPage">
+            {/* <div className="directPage">
               <a href="Users" className="text-decoration-none text-white py-3">
                 users
               </a>
-            </div>
+            </div> */}
             <div className="directPage">
               <a href="products" className="text-decoration-none text-white">
                 products
               </a>
             </div>
-            <div className="directPage">
+            {/* <div className="directPage">
               <a href="posts" className="text-decoration-none text-white">
                 posts
               </a>
-            </div>
+            </div> */}
           </ul>
         </div>
         <div className="content bg-light">
@@ -169,7 +170,7 @@ function Products() {
 
               <tbody>
                 {currentProducts.map((product, index) => (
-                  <tr>
+                  <tr key={product.id}>
                     <td>{product.id}</td>
                     <td>{product.title}</td>
                     <td>{product.price}</td>
@@ -284,8 +285,9 @@ function Products() {
                         </div>
                       </div>
                       <button
-                        onClick={(e) => handleOnClickDelete(product)}
                         className="btn btn-basic btn-delete"
+                        data-bs-toggle="modal"
+                        data-bs-target="#myModalDelete"
                       >
                         <svg
                           xmlns="http://www.w3.org/2000/svg"
@@ -302,6 +304,41 @@ function Products() {
                           />
                         </svg>
                       </button>
+                      <div class="modal" tabindex="-1" id="myModalDelete">
+                        <div class="modal-dialog">
+                          <div class="modal-content">
+                            <div class="modal-header">
+                              <h5 class="modal-title">Delete product</h5>
+                              <button
+                                type="button"
+                                class="btn-close"
+                                data-bs-dismiss="modal"
+                                aria-label="Close"
+                              ></button>
+                            </div>
+                            <div class="modal-body">
+                              <p>Are you sure you want to delete this data?</p>
+                            </div>
+                            <div class="modal-footer">
+                              <button
+                                type="button"
+                                class="btn btn-danger"
+                                data-bs-dismiss="modal"
+                                onClick={(e) => handleOnClickDelete(product)}
+                              >
+                                Delete
+                              </button>
+                              <button
+                                type="button"
+                                class="btn btn-secondary"
+                                data-bs-dismiss="modal"
+                              >
+                                Close
+                              </button>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
 
                       <button
                         type="button"
