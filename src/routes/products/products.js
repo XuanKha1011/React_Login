@@ -848,6 +848,7 @@ function Products() {
               </tbody>
             </table>
             <ToastContainer
+              
               position="top-left"
               autoClose={1000}
               hideProgressBar={false}
@@ -860,6 +861,7 @@ function Products() {
               theme="dark"
             />
             <Pagination
+              
               totalRows={products.length}
               limit={limit}
               pagination={pagination}

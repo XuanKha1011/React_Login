@@ -8,7 +8,7 @@ const Pagination = ({totalRows, limit, pagination}) => {
     }
  
   return (
-    <nav>
+    <nav className='g-2'>
         <ul className='pagination'>
             {pageNumbers.map((number) => (
                 <li key={number} className="page-item">
