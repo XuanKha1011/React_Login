@@ -26,3 +26,6 @@ table {
     width: 150px;
   }
   
+  .search{
+    min-width: 50px;
+  }
