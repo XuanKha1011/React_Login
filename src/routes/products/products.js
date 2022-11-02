@@ -14,6 +14,7 @@ function Products() {
   let navigate = useNavigate();
   const [products, setProducts] = useState([]);
 
+  const [loading, setLoading] = useState(true);
   const localStorageData = JSON.parse(localStorage.getItem("user-info"));
   const [currentPage, setCurrentPage] = useState(1);
   const [limit, setLimit] = useState(10);
@@ -69,6 +70,9 @@ function Products() {
     handleCategory();
   }, []);
 
+  const timer = setTimeout(() => {
+    setLoading(false);
+  }, 1000);
   const handleSort = () => {
     products.sort((a, b) => b.id - a.id);
   };
@@ -370,18 +374,31 @@ function Products() {
                     </ul>
                   </div>
                 </div>
-                <div className="search text-end col">
-                  <input
+                <div className="search position-absolute end-0 start-1">
+                  {/* <input
                     type="text"
                     placeholder="Search products "
                     onChange={(e) => setSearchBar(e.target.value)}
                     value={searchBar}
                   />
-                  <i className="fa fa-search m-2"></i>
+                  <i className="fa fa-search m-2" aria-hidden="true"/> */}
+                  <div class="input-group">
+                   
+                    <input
+                      type="text"
+                      class="form-control"
+                      placeholder= "Search products"
+                      onChange={(e) => setSearchBar(e.target.value)}
+                    value={searchBar}
+                    />
+                     <span class="input-group-text">
+                      <span class="bi-person"><i className="fa fa-search" aria-hidden="true"/></span>
+                    </span>
+                  </div>
                 </div>
               </div>
             </div>
-            <table>
+            <table className="g-4">
               <tr>
                 <th>
                   {/* <svg
@@ -411,7 +428,8 @@ function Products() {
               </tr>
               <tbody>
                 {currentCategory.length > 0
-                  ? products
+                  ? !loading &&
+                    products
                       .filter((product) =>
                         product.title
                           .toLowerCase()
@@ -621,7 +639,8 @@ function Products() {
                           </td>
                         </tr>
                       ))
-                  : currentProducts
+                  : !loading &&
+                    currentProducts
                       .filter((product) =>
                         product.title
                           .toLowerCase()
